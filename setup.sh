@@ -168,8 +168,8 @@ echo
 mkdir -p /etc/letsencrypt
 
 echo 'rsa-key-size = 4096
-pre-hook = /sbin/iptables -I INPUT -p tcp --dport 443 -j ACCEPT
-post-hook = /sbin/iptables -D INPUT -p tcp --dport 443 -j ACCEPT
+pre-hook = /sbin/iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+post-hook = /sbin/iptables -D INPUT -p tcp --dport 80 -j ACCEPT
 renew-hook = /usr/sbin/ipsec reload && /usr/sbin/ipsec secrets
 ' > /etc/letsencrypt/cli.ini
 
@@ -210,8 +210,8 @@ net.ipv6.conf.lo.disable_ipv6 = 1
 sysctl -p
 
 # these ike and esp settings are tested on Mac 10.12, iOS 10 and Windows 10
-# iOS/Mac with appropriate configuration profiles use AES_GCM_16_256/PRF_HMAC_SHA2_256/ECP_521 
-# Windows 10 uses AES_CBC_256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/ECP_384 
+# iOS/Mac with appropriate configuration profiles use AES_GCM_16_256/PRF_HMAC_SHA2_256/ECP_521
+# Windows 10 uses AES_CBC_256/HMAC_SHA2_256_128/PRF_HMAC_SHA2_256/ECP_384
 
 echo "config setup
   strictcrlpolicy=yes
@@ -548,4 +548,3 @@ echo "Connection instructions have been emailed to you, and can also be found in
 # necessary for IKEv2?
 # Windows: https://support.microsoft.com/en-us/kb/926179
 # HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PolicyAgent += AssumeUDPEncapsulationContextOnSendRule, DWORD = 2
-
